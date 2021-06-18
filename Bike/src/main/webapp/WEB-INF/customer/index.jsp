@@ -8,8 +8,8 @@
 			<a href="regi"><button>Register</button></a> <br><br>
 			<a href="login"><button>Login</button></a> 
 			<br><br><br><br>
-			 <a href="/Bike/"><button>z</button></a>
+			 <a href="/Bike/"><button>Go back</button></a>
 			
-			</div>
+			</div><br><br>
 </body>
 </html>

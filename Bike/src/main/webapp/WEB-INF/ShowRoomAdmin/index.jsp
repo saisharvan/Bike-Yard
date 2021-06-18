@@ -11,7 +11,8 @@
 <a href="showreg"><button>Register</button></a>
 <a href="srlogin"><button>Login</button></a>
 <br><br><br><br>
- <a href="/Bike/"><button>z</button></a>
+ <a href="/Bike/"><button>Go back</button></a>
  </div>
+ <br><br>
 </body>
 </html>

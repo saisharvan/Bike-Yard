@@ -11,7 +11,7 @@
 
 <body>
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>S.No</th><th>FirstName</th><th>LastName</th><th>Age<th>Gender</th><th>Email</th><th>Phone Number</th><th>Address</th><th>Delete</th></tr>  
+<tr><th>S.No</th><th>FirstName</th><th>LastName</th><th>Age<th>Gender</th><th>Email</th><th>Phone Number</th><th>Address</th><th>Edit</th><th>Delete</th></tr>  
    <c:forEach var="s" items="${list}">   
    <tr> 
    <td>${s.id }</td> 
@@ -22,7 +22,7 @@
       <td>${s.email}</td> 
       <td>${s.num}</td> 
       <td>${s.address}</td> 
- 
+ 	<td><a href="edits/${s.id}">Edit</a></td>  
    <td><a href="deletecustomer/${s.id}">Delete</a></td>    
    </tr>  
    </c:forEach>  

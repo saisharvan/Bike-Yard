@@ -14,8 +14,9 @@
 
 			Enter LogIn ID: <input type="text" name="Id"> <br><br>
 			Enter Password: <input type="text" name="Pass"> <br> <br><br>
-			<input type="submit" value="login">
+			<input type="submit" value="login"><br><br>
 	</div >
 	</form>
+	<a href="/Bike/"><button>Go back</button></a>
 </body>
 </html>
