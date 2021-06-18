@@ -1,0 +1,97 @@
+package com.dao;
+
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import com.entity.BikesData;
+import com.util.HibernateUtil;
+
+public class BikeDao 
+{
+	static int a;
+	static SessionFactory sessionFactory=null;
+
+	//it will save the data in database
+	public static void save(BikesData bi) {
+		System.out.println("creating BikesData");
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.save(bi);
+		session.getTransaction().commit();
+		System.out.println("BikesData created subbessfully "+bi.toString());
+
+	}
+
+	//it display the displayAll details
+	public static  void displayBikes(){
+		List<BikesData> bikList=getBikes();
+		for(BikesData bik:bikList)
+		{
+			System.out.println(bik.toString());
+		}
+	}
+
+	//
+	public static List<BikesData> getBikes() {
+		System.out.println("Fetching bike");
+		Session session=HibernateUtil.getSessionFactory().openSession();
+
+		List<BikesData>	bik=session.createQuery("from BikesData").list();
+		session.close();
+		System.out.println("Fetched "+bik.size());
+		return bik;
+	}
+
+	public static BikesData getbikById(int id) {
+		a=id;
+		System.out.println("Fetching BikesData");
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		BikesData bik=session.load(BikesData.class, id);
+		System.out.println(bik.toString());
+		session.close();
+		return bik;
+	}
+
+	//it will update particular id
+	public static void update(BikesData bi) {
+		System.out.println("Updating BikesData");
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		BikesData bb=session.load(BikesData.class, bi.getId());
+    	bb.setBikeName(bi.getBikeName());
+    	bb.setBikeCost(bi.getBikeCost());
+		bb.setBikeColor(bi.getBikeColor());
+		bb.setBikeDescription(bi.getBikeDescription());
+		bb.setAvailability(bi.getAvailability());
+		System.out.println(bi.toString());
+		session.getTransaction().commit();
+		session.close();
+		System.out.println("Updated");
+
+	}
+
+	//it delete the data
+	public static void delete(int id) {
+		System.out.println("delete bike");
+		BikesData c=getbikById(id);
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.delete(c);
+		session.getTransaction().commit();
+		session.close();
+		System.out.println("deleted subbessfully");		
+	}
+
+	//delete all
+	public void deleteAll(){
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query=	session.createQuery("Delete from bike");
+		query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		System.out.println("deleted all bikomers data from database");
+
+	}
+}

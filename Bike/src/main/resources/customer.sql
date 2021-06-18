@@ -1,0 +1,2 @@
+create table customer(ID int not null auto_increment,FirstName varchar(64),LastName varchar(64),
+Age int ,Gender varchar(64),Email varchar(64),PhoneNumber varchar(64),Address varchar(64),Password varchar(64));
