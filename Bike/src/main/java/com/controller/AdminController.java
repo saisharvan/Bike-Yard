@@ -33,7 +33,6 @@ public class AdminController {
 	
 	@RequestMapping("/add")
 	public String sai(HttpServletRequest req,HttpServletResponse res) {
-		ModelAndView mv = new ModelAndView();
 		if(req.getParameter("Id").equals("Share") && req.getParameter("Pass").equals("1998")) 
 		{
 			return "redirect:/home";
@@ -61,12 +60,12 @@ public class AdminController {
 		@RequestMapping("/edits/{id}")
 		public String edit(@PathVariable int id,Model mv) {
 			System.out.println(id);
-			Customer cus=CustomerDao.getCustById(id);
+			Customer cus=adminDao.getCustById(id);
 			mv.addAttribute("customer", cus);
 			return "admin/editcustomer";	
 		}
 		// It updates model object.   
-		@RequestMapping(value="/edits/updatecustomer",method = RequestMethod.POST)    
+		@RequestMapping(value="/edits/updatecustomer")    
 		public String editsave(@ModelAttribute("customer") Customer cus){  
 			System.out.println("updating");
 			CustomerDao.update(cus);    
@@ -100,7 +99,7 @@ public class AdminController {
 
 		
 		// It updates model object at showt
-		@RequestMapping(value="/ashowedit/aupdateshowroom",method = RequestMethod.POST)    
+		@RequestMapping(value="/ashowedit/aupdateshowroom")    
 		public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){  
 			System.out.println("updating");
 			ShowroomDao.update(show);    
@@ -124,7 +123,7 @@ public class AdminController {
 			}
 
 			//it will save the data into collection after oopen the data
-			@RequestMapping(value="/save",method = RequestMethod.POST)    
+			@RequestMapping(value="/save")    
 			public String save(@ModelAttribute("bike") BikesData cus){
 				BikeDao.save(cus);   
 				return "redirect:/view";//will redirect to viewemp request mapping    
@@ -151,7 +150,7 @@ public class AdminController {
 				
 			
 		    
-		    @RequestMapping(value="/bedit/updatebike",method = RequestMethod.POST)    
+		    @RequestMapping(value="/bedit/updatebike")    
 		    public String editsave(@ModelAttribute("bike") BikesData cus){  
 		    	System.out.println("updating");
 		    	BikeDao.update(cus);    

@@ -25,7 +25,7 @@
 	      <td>${biked.bikeColor}</td>
 	      <td>${biked.bikeDescription }</td>
 	      <td>${biked.availability }</td>
-	      <td><button>Order</button></td>
+	      <td><a href="book/${biked.id}"><button>Order</button></a></td>
 	       </tr>
 	   </c:forEach>
      </tbody>

@@ -78,18 +78,28 @@ public class CustomerController {
 	@RequestMapping("/profile")
 	public String profile(Model mv) {
 		System.out.println("controller"+CustomerDao.a);
-		Customer cus= CustomerDao.getCustById(CustomerDao.a);
-		//System.out.println("after "+cus.getId());
+		Customer cus= CustomerDao.getCustBy();
+		System.out.println("after "+cus.getId());
 		mv.addAttribute("cus",cus);
 		return "customer/profile";	
 	}
 
-	
+	//////////////////////////////order
+		@RequestMapping("/book/{id}")
+		public String book(@PathVariable int id) {
+			System.out.println(id);
+			Customer cus=CustomerDao.getCustBy(); 
+			cus.setBookId(id);
+			CustomerDao.update(cus); 
+			//mv.addAttribute("customer", cus);
+			return "customer/hoome";	
+		}
+	/////////////////////////////////
 	//it retrive the editform in cust
 	@RequestMapping("/custedit/{id}")
 	public String custedit(@PathVariable int id,Model mv) {
 		System.out.println(id);
-		Customer cus=CustomerDao.getCustById(id);  
+		Customer cus=CustomerDao.getCustBy();  
 		mv.addAttribute("customer", cus);
 		return "customer/custedit";	
 	}

@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+
+import com.entity.Customer;
 import com.entity.ShowRoomAdmin;
 import com.util.HibernateUtil;
 
@@ -37,13 +39,31 @@ public class ShowroomDao {
 		
 
 		public static ShowRoomAdmin getShowById(int id) {
-			a=id;
+			
 			System.out.println("Fetching ShowRoomAdmin");
 			Session session=HibernateUtil.getSessionFactory().openSession();
 			ShowRoomAdmin show=session.load(ShowRoomAdmin.class, id);
-			//session.close();
+			System.out.println(show.toString());
+			session.close();
 			return show;
+			}
+		public static ShowRoomAdmin getShowBy() {
+			System.out.println("Fetching Customer");
+			List<ShowRoomAdmin> custList=getShowRoomAdmins();
+			ShowRoomAdmin c=new ShowRoomAdmin();
+			for(ShowRoomAdmin cust:custList)
+			{
+				if(a==cust.getShowRoomId()) 
+				{
+					System.out.println("show profile id "+a);
+					c=cust;
+					break;
+				}
+			}
+			return c;
 		}
+		
+		
 		/////////////////////////////////
 		public static String CheckIdPassword(String email,String pass) {
 			List<ShowRoomAdmin> showList=getShowRoomAdmins();

@@ -3,7 +3,6 @@ package com.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +16,7 @@ import com.entity.ShowRoomAdmin;
 @Controller
 public class ShowroomController {
 	
-	
+	int a=ShowroomDao.take();
 	//
 	@RequestMapping("/s")
 	public String s() 
@@ -37,6 +36,7 @@ public class ShowroomController {
 		String id=req.getParameter("Id");
 		String pass=req.getParameter("Pass");
 		System.out.println(id+" "+pass);
+		
 		return ShowroomDao.CheckIdPassword(id,pass);
 		
 	}
@@ -55,8 +55,8 @@ public class ShowroomController {
 	}
 
 	//it will save the data into collection after open the login page
-	@RequestMapping(value="/showsave",method = RequestMethod.POST)    
-	public String ShowRoomAdminsave(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){
+	@RequestMapping(value="/showsave")    
+	public String showRoomAdminsave(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){
 		ShowroomDao.save(show);   
 		return "redirect:/s";//will redirect to viewsemp request mapping    
 	}
@@ -64,10 +64,10 @@ public class ShowroomController {
 	//it give show by id
 	@RequestMapping("/srprofile")
 	public String profile(Model mv) {
-		int id=ShowroomDao.take();
-		ShowRoomAdmin show= ShowroomDao.getShowById(id);
-		System.out.println("after "+show.getShowRoomId());
-		mv.addAttribute("show",show);
+		int id=a;
+		ShowRoomAdmin show= ShowroomDao.getShowBy();
+		System.out.println("after "+show.toString());
+		mv.addAttribute("sho",show);
 		return "ShowRoomAdmin/profile";	
 	}
 
@@ -76,14 +76,14 @@ public class ShowroomController {
 	@RequestMapping("/showedit/{id}")
 	public String showtedit(@PathVariable int id,Model mv) {
 		System.out.println(id);
-		ShowRoomAdmin show=ShowroomDao.getShowById(id);  
+		ShowRoomAdmin show=ShowroomDao.getShowBy();  
 		mv.addAttribute("ShowRoomAdmin", show);
 		return "ShowRoomAdmin/showedit";	
 	}
 
 	
 	// It updates model object at showt
-	@RequestMapping(value="/showedit/updateshowroom",method = RequestMethod.POST)    
+	@RequestMapping(value="/showedit/updateshowroom")    
 	public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){  
 		System.out.println("updating");
 		ShowroomDao.update(show);    
@@ -115,7 +115,7 @@ public class ShowroomController {
 		}
 
 		//it will save the data into collection after oopen the data
-		@RequestMapping(value="/savesr",method = RequestMethod.POST)    
+		@RequestMapping(value="/savesr")    
 		public String save(@ModelAttribute("bike") BikesData cus){
 			BikeDao.save(cus);   
 			return "redirect:/showview";//will redirect to viewemp request mapping    

@@ -41,8 +41,29 @@ public class CustomerDao {
 		System.out.println("Fetching Customer");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		Customer cust=session.load(Customer.class, id);
-		//session.close();
+		session.close();
 		return cust;
+	}
+	////////////////////////
+	public static void book(int i) 
+	{
+		
+	}
+	////////////////////////
+	public static Customer getCustBy() {
+		System.out.println("Fetching Customer");
+		List<Customer> custList=getCustomers();
+		Customer c=new Customer();
+		for(Customer cust:custList)
+		{
+			if(a==cust.getId()) 
+			{
+				System.out.println("profile id "+a);
+				c=cust;
+				break;
+			}
+		}
+		return c;
 	}
 	///////////////*******************//////////////////
 	public static String CheckIdPassword(String email,String pass) {
@@ -57,6 +78,7 @@ public class CustomerDao {
 				a=cust.getId();  
 				System.out.println("checked id "+a);
 				che=true;
+				break;
 			}
 		}
 			if(che==true) {
@@ -83,6 +105,10 @@ public class CustomerDao {
 		cc.setEmail(cus.getEmail());
 		cc.setNum(cus.getNum());
 		cc.setAddress(cus.getAddress());
+		if(cus.getBookId() != 0) 
+		{
+			cc.setBookId(cus.getBookId());
+		}else {cc.setBookId(0);}
 		System.out.println(cus.toString());
 		session.getTransaction().commit();
 		session.close();
