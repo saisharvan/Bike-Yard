@@ -21,7 +21,8 @@
     <h3>Phone Number =     ${cus.num}<br></h3>
     <h3>Address =          ${cus.address}<br></h3> 
     <input type="submit" value="Edit Data" />			
-	</form:form>
+	</form:form><br>
+	<a href="/Bike/hoome"><button>Back to Home</button></a>
 </body>
 </html>
 

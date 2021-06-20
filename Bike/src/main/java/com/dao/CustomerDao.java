@@ -4,6 +4,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+
+import com.entity.BikesData;
 import com.entity.Customer;
 import com.util.HibernateUtil;
 
@@ -45,9 +47,12 @@ public class CustomerDao {
 		return cust;
 	}
 	////////////////////////
-	public static void book(int i) 
+	public static BikesData book() 
 	{
-		
+		Customer cus=CustomerDao.getCustBy(); 
+		int bk=cus.getBookId();
+		BikesData bd=BikeDao.getbikBy(bk);
+		return bd;
 	}
 	////////////////////////
 	public static Customer getCustBy() {

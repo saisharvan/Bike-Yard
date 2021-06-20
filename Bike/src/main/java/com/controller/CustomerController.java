@@ -18,7 +18,11 @@ import com.entity.*;
 public class CustomerController {
 
 	static int q;
-	
+	@Autowired
+	BikeDao abd;
+	//
+	@Autowired
+	CustomerDao acd;
 	//
 	@RequestMapping("/c")
 	public String c() 
@@ -86,13 +90,27 @@ public class CustomerController {
 
 	//////////////////////////////order
 		@RequestMapping("/book/{id}")
+		public String cap(@PathVariable int id,Model mv) {
+			BikesData bd=BikeDao.getbikBy(id);
+			mv.addAttribute("bik", bd);
+			return "customer/cap";		
+		}
+	
+		@RequestMapping("/bookc/{id}")
 		public String book(@PathVariable int id) {
 			System.out.println(id);
-			Customer cus=CustomerDao.getCustBy(); 
+			Customer cus=acd.getCustBy(); 
 			cus.setBookId(id);
 			CustomerDao.update(cus); 
 			//mv.addAttribute("customer", cus);
-			return "customer/hoome";	
+			return "customer/sucess";	
+		}
+		//vb
+		@RequestMapping("/viewbooking")
+		public String bookedData(Model mv) {
+			BikesData bd=CustomerDao.book();
+			mv.addAttribute("bik", bd);
+			return "customer/bookings";		
 		}
 	/////////////////////////////////
 	//it retrive the editform in cust

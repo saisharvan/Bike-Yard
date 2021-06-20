@@ -24,6 +24,11 @@ public class BikesData
 	int bikeCost;
 	@Column(name="bikeColor")
 	String bikeColor;
+	@Column(name = "bikeDescription")
+	private String bikeDescription;
+	@Column(name = "availability")
+	private String availability;
+	
 	
 	public String getBikeDescription() {
 		return bikeDescription;
@@ -43,17 +48,6 @@ public class BikesData
 	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
-
-
-	@Column(name = "bikeDescription")
-	private String bikeDescription;
-
-	@Column(name = "availability")
-	private String availability;
-	
-	///////////////////////////
-	
-	
 	public BikesData() {}
 	
 	

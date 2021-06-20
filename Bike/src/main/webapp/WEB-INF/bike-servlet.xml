@@ -14,5 +14,7 @@
    <property name="suffix" value=".jsp"/>
    </bean>
   
-  
+  <bean id="abd" class="com.dao.BikeDao"></bean>
+  <bean id="aad" class="com.dao.adminDao"></bean>
+  <bean id="acd" class="com.dao.CustomerDao"></bean>
    </beans>

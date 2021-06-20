@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.entity.BikesData;
+import com.entity.Customer;
 import com.util.HibernateUtil;
 
 public class BikeDao 
@@ -36,7 +37,6 @@ public class BikeDao
 	public static List<BikesData> getBikes() {
 		System.out.println("Fetching bike");
 		Session session=HibernateUtil.getSessionFactory().openSession();
-
 		List<BikesData>	bik=session.createQuery("from BikesData").list();
 		session.close();
 		System.out.println("Fetched "+bik.size());
@@ -51,6 +51,22 @@ public class BikeDao
 		System.out.println(bik.toString());
 		session.close();
 		return bik;
+	}
+	//////////////////////////////
+	public static BikesData getbikBy(int a) {
+		System.out.println("Fetching Customer");
+		List<BikesData> bl=getBikes();
+		BikesData bid=new BikesData();
+		for(BikesData bd:bl)
+		{
+			if(a==bd.getId()) 
+			{
+				System.out.println("bike id "+a);
+				bid=bd;
+				break;
+			}
+		}
+		return bid;
 	}
 
 	//it will update particular id
