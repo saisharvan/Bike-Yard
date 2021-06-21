@@ -94,7 +94,7 @@ public class ShowroomController {
 	///it is use for ShowRoomAdmin
 	@RequestMapping("/showview")    
 	public String showview(Model m){    
-		List<BikesData> list=BikeDao.getsrBikes();    
+		List<BikesData> list=BikeDao.getsrBikes(ShowroomDao.b);    
 		m.addAttribute("list",list);  
 		return "ShowRoomAdmin/viewbikessr";    
 	}

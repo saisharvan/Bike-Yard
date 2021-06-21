@@ -84,16 +84,16 @@ public class BikeDao
 	}
 ///////////
 	@SuppressWarnings("null")
-	public static List<BikesData> getsrBikes() {
+	public static List<BikesData> getsrBikes(int w) {
 		System.out.println("Fetching sr bike");
 		List<BikesData>	bik=getBikes();
 		List<BikesData> srbd =new ArrayList<BikesData>();
 		int q = 0;
 		for(BikesData bd:bik)
 		{
-			System.out.println(ShowroomDao.b);
+			System.out.println(w);
 			System.out.println(bd.getSraId());
-			if(ShowroomDao.b==bd.getSraId()) 
+			if(w==bd.getSraId()) 
 			{
 				srbd.add(bd);
 				q++;

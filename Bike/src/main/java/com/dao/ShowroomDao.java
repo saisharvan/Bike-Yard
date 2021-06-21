@@ -12,8 +12,8 @@ import com.util.HibernateUtil;
 
 public class ShowroomDao {
 	/////////////////
-		static int a;
-		static int b;
+		public static int a;
+		public static int b;
 		
 		static SessionFactory sessionFactory=null;
 

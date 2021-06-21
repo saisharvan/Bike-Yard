@@ -89,6 +89,14 @@ public class CustomerController {
 	}
 
 	//////////////////////////////order
+	//
+	@RequestMapping("/custshowrooms")    
+	public String viewShowAdmins(Model m){    
+		List<ShowRoomAdmin> list=ShowroomDao.getShowRoomAdmins();    
+		m.addAttribute("list",list);  
+		return "customer/custshowadmin";    
+	}
+	//
 		@RequestMapping("/book/{id}")
 		public String cap(@PathVariable int id,Model mv) {
 			BikesData bd=BikeDao.getbikBy(id);
@@ -139,7 +147,13 @@ public class CustomerController {
 		m.addAttribute("list",list);  
 		return "customer/custviewbikes";    
 	}
-
+	@RequestMapping("/custview/{id}")    
+	public String sacustview(@PathVariable int id,Model m){    
+		List<BikesData> list=BikeDao.getsrBikes(id);    
+		m.addAttribute("list",list);  
+		return "customer/custviewbikes";    
+	}
+//////////////////////////////////////////////////
 
 	//log out page
 	@RequestMapping(value="/logout")    

@@ -13,7 +13,7 @@
 		<br>
 		<br> <a href="/Bike/profile"><button>Customer Profile</button></a> <br>
 		<br>
-		<br> <a href="/Bike/custview"><button>View bikes</button></a><br>
+		<br> <a href="/Bike/custshowrooms"><button>View showrooms</button></a><br>
 		<br>
 		<br> <a href="/Bike/viewbooking"><button>Booking Details</button></a><br>
 		<br>

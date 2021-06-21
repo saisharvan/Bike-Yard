@@ -11,11 +11,11 @@
 <h1 style="text-align:center">Your Booked bikes details Are Hear</h1><br><br>
 
 <form:form modelAttribute="bik">
-	  <h3>bikeName 				 ${bik.bikeName}<br></h3> <br>   
-	  <h3>bikeCost 				 ${bik.bikeCost}<br></h3><br>
-	  <h3>bikeColor 			 ${bik.bikeColor}<br></h3><br>
-	  <h3>bikeDescription		 ${bik.bikeDescription }<br></h3><br>
-	  <h3>availability			 ${bik.availability }<br></h3><br>
+	  <h3>bikeName : 				 ${bik.bikeName}<br></h3> <br>   
+	  <h3>bikeCost : 				 ${bik.bikeCost}<br></h3><br>
+	  <h3>bikeColor : 			     ${bik.bikeColor}<br></h3><br>
+	  <h3>bikeDescription :		     ${bik.bikeDescription }<br></h3><br>
+	  <h3>availability :			 ${bik.availability }<br></h3><br>
 	</form:form>
 	
 	<a href="/Bike/hoome"><button>Back to Home</button></a>

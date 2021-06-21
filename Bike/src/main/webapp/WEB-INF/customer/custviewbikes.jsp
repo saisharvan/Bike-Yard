@@ -25,13 +25,13 @@
 	      <td>${biked.bikeColor}</td>
 	      <td>${biked.bikeDescription }</td>
 	      <td>${biked.availability }</td>
-	      <td><a href="book/${biked.id}"><button>Book</button></a></td>
+	      <td><a href="/Bike/book/${biked.id}"><button>Book</button></a></td>
 	       </tr>
 	   </c:forEach>
      </tbody>
    </table>
    
    <br><br>
-   <a href="hoome"><button>home</button></a>
+   <a href="/Bike/hoome"><button>home</button></a>
   </body>
 </html>
