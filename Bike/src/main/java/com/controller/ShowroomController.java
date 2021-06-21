@@ -94,7 +94,7 @@ public class ShowroomController {
 	///it is use for ShowRoomAdmin
 	@RequestMapping("/showview")    
 	public String showview(Model m){    
-		List<BikesData> list=BikeDao.getBikes();    
+		List<BikesData> list=BikeDao.getsrBikes();    
 		m.addAttribute("list",list);  
 		return "ShowRoomAdmin/viewbikessr";    
 	}
@@ -117,7 +117,9 @@ public class ShowroomController {
 		//it will save the data into collection after oopen the data
 		@RequestMapping(value="/savesr")    
 		public String save(@ModelAttribute("bike") BikesData cus){
-			BikeDao.save(cus);   
+			cus.setSraId(a);
+			System.out.println(cus.toString());
+			BikeDao.savesr(cus);   
 			return "redirect:/showview";//will redirect to viewemp request mapping    
 		}
 

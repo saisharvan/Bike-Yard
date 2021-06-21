@@ -25,11 +25,22 @@ public class BikesData
 	@Column(name="bikeColor")
 	String bikeColor;
 	@Column(name = "bikeDescription")
-	private String bikeDescription;
+	String bikeDescription;
 	@Column(name = "availability")
-	private String availability;
+	String availability;
+	@Column(name = "sraId")
+	int sraId;
 	
-	
+	public int getSraId() {
+		return sraId;
+	}
+
+
+	public void setSraId(int sraId) {
+		this.sraId = sraId;
+	}
+
+
 	public String getBikeDescription() {
 		return bikeDescription;
 	}
@@ -99,8 +110,11 @@ public class BikesData
 	@Override
 	public String toString() {
 		return "BikesData [id=" + id + ", bikeName=" + bikeName + ", bikeCost=" + bikeCost + ", bikeColor=" + bikeColor
-				+ ", bikeDescription=" + bikeDescription + ", availability=" + availability + "]";
+				+ ", bikeDescription=" + bikeDescription + ", availability=" + availability + ", sraId=" + sraId + "]";
 	}
+
+
+	
 	
 	
 	

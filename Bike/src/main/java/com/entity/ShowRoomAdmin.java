@@ -9,6 +9,11 @@ package com.entity;
 	@Entity
 	@Table(name="showroomadmin")
 	public class ShowRoomAdmin {
+		@Id
+		@Column(name="showRoomId")
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Integer showRoomId;
+		
 		@Column(name="userName")
 		private String userName;
 		
@@ -27,10 +32,9 @@ package com.entity;
 		@Column(name="showRoomLocation")
 	    private String showRoomLocation;
 		
-		@Id
-		@Column(name="showRoomId")
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer showRoomId;
+		
+		
+		
 		
 		
 		public ShowRoomAdmin() {}

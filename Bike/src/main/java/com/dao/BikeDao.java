@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,6 +24,19 @@ public class BikeDao
 		System.out.println("BikesData created subbessfully "+bi.toString());
 
 	}
+	////////////savesr
+	public static void savesr(BikesData bi) {
+		System.out.println("creating BikesData");
+		bi.setSraId(ShowroomDao.b);
+		System.out.println(bi.toString());
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.save(bi);
+		session.getTransaction().commit();
+		System.out.println("BikesData created subbessfully "+bi.toString());
+
+	}
+	//////////////
 
 	//it display the displayAll details
 	public static  void displayBikes(){
@@ -42,7 +56,7 @@ public class BikeDao
 		System.out.println("Fetched "+bik.size());
 		return bik;
 	}
-
+	//
 	public static BikesData getbikById(int id) {
 		a=id;
 		System.out.println("Fetching BikesData");
@@ -68,7 +82,28 @@ public class BikeDao
 		}
 		return bid;
 	}
-
+///////////
+	@SuppressWarnings("null")
+	public static List<BikesData> getsrBikes() {
+		System.out.println("Fetching sr bike");
+		List<BikesData>	bik=getBikes();
+		List<BikesData> srbd =new ArrayList<BikesData>();
+		int q = 0;
+		for(BikesData bd:bik)
+		{
+			System.out.println(ShowroomDao.b);
+			System.out.println(bd.getSraId());
+			if(ShowroomDao.b==bd.getSraId()) 
+			{
+				srbd.add(bd);
+				q++;
+			}
+		}
+		System.out.println("Fetched sr "+q);
+		return srbd;
+	}
+//////////
+	
 	//it will update particular id
 	public static void update(BikesData bi) {
 		System.out.println("Updating BikesData");

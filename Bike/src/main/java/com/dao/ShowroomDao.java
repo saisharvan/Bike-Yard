@@ -13,6 +13,7 @@ import com.util.HibernateUtil;
 public class ShowroomDao {
 	/////////////////
 		static int a;
+		static int b;
 		
 		static SessionFactory sessionFactory=null;
 
@@ -74,7 +75,8 @@ public class ShowroomDao {
 				String passs=show.getPassword();
 				if(email.equals(idd) && pass.equals(passs)) 
 				{
-					a=show.getShowRoomId();  
+					a=show.getShowRoomId(); 
+					b=a;
 					System.out.println("checked id "+a);
 					che=true;
 				}
@@ -121,8 +123,8 @@ public class ShowroomDao {
 		}
 
 		public static int take() {
-			System.out.println("dao"+a);
-			return a;
+			System.out.println("dao"+b);
+			return b;
 		}
 		public static void out() 
 		{
