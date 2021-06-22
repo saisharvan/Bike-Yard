@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.dao.*;
-import com.entity.BikesData;
-import com.entity.ShowRoomAdmin;
+import com.entity.*;
 
 @Controller
 public class ShowroomController {
@@ -91,7 +90,7 @@ public class ShowroomController {
 		return "redirect:/srhome";    
 	} 
 	
-	///it is use for ShowRoomAdmin
+	//it is use for ShowRoomAdmin
 	@RequestMapping("/showview")    
 	public String showview(Model m){    
 		List<BikesData> list=BikeDao.getsrBikes(ShowroomDao.b);    
@@ -99,6 +98,14 @@ public class ShowroomController {
 		return "ShowRoomAdmin/viewbikessr";    
 	}
 
+	//booking details of customer
+	@RequestMapping("/bookings") 
+	public String bookings(Model m) 
+	{
+		List<BookingData> list=BookingDao.getbooks(ShowroomDao.b);
+		m.addAttribute("list",list);
+		return "ShowRoomAdmin/viewbookings";
+	}
 
 	//log out page
 	@RequestMapping(value="/srlogout")    

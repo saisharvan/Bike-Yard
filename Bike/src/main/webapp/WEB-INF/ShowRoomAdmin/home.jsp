@@ -10,7 +10,7 @@
 <body>
 			<a href="srprofile"><button>Profile</button></a> <br><br>
 			<a href="showview"><button>View bikes</button></a><br><br>
-			<button>View Orders</button><br><br>
+			<a href="bookings"><button>View Orders</button></a><br><br>
 			<a href="srlogout"><button>Logout</button></a>
 </body>
 </html>

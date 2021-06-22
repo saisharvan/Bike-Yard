@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import com.controller.CustomerController;
 import com.entity.BikesData;
 import com.entity.Customer;
 import com.util.HibernateUtil;
@@ -80,7 +81,8 @@ public class CustomerDao {
 			String passs=cust.getPassword();
 			if(email.equals(idd) && pass.equals(passs)) 
 			{
-				a=cust.getId();  
+				a=cust.getId(); 
+				CustomerController.CusId=cust.getId();
 				System.out.println("checked id "+a);
 				che=true;
 				break;

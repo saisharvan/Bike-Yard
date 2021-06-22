@@ -16,10 +16,12 @@ import com.entity.*;
 
 @Controller
 public class CustomerController {
+	
+	public static int CusId;
+	public static int ShowId;
+	public static int bikeId;
 
 	static int q;
-	@Autowired
-	BikeDao abd;
 	//
 	@Autowired
 	CustomerDao acd;
@@ -107,8 +109,10 @@ public class CustomerController {
 		@RequestMapping("/bookc/{id}")
 		public String book(@PathVariable int id) {
 			System.out.println(id);
+			bikeId=id;
 			Customer cus=acd.getCustBy(); 
 			cus.setBookId(id);
+			BookingDao.savecus();
 			CustomerDao.update(cus); 
 			//mv.addAttribute("customer", cus);
 			return "customer/sucess";	
@@ -139,16 +143,18 @@ public class CustomerController {
 		System.out.println(cus);
 		return "redirect:/hoome";    
 	} 
-	
+///////////////////////////////////////////////////
+	/*
 	///it is use for customer
 	@RequestMapping("/custview")    
 	public String custview(Model m){    
 		List<BikesData> list=BikeDao.getBikes();    
 		m.addAttribute("list",list);  
 		return "customer/custviewbikes";    
-	}
+	}*/
 	@RequestMapping("/custview/{id}")    
-	public String sacustview(@PathVariable int id,Model m){    
+	public String sacustview(@PathVariable int id,Model m){   
+		ShowId=id;
 		List<BikesData> list=BikeDao.getsrBikes(id);    
 		m.addAttribute("list",list);  
 		return "customer/custviewbikes";    
