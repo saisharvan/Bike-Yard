@@ -3,7 +3,6 @@ package com.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -107,8 +106,7 @@ public class CustomerController {
 		public String book(@PathVariable int id) {
 			System.out.println(id);
 			bikeId=id;
-			CustomerDao cd=new CustomerDao();
-			Customer cus=cd.getCustBy(); 
+			Customer cus=CustomerDao.getCustBy(); 
 			cus.setBookId(id);
 			BookingDao.savecus();
 			CustomerDao.update(cus); 
@@ -118,8 +116,8 @@ public class CustomerController {
 		//vb
 		@RequestMapping("/viewbooking")
 		public String bookedData(Model mv) {
-			BikesData bd=CustomerDao.book();
-			mv.addAttribute("bik", bd);
+			List<BookingData> list=BookingDao.getcusbooks(CusId);
+			mv.addAttribute("list",list);
 			return "customer/bookings";		
 		}
 	/////////////////////////////////

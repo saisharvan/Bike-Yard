@@ -94,6 +94,26 @@ public class BookingDao {
 		System.out.println("Fetched sr "+q);
 		return srbd;
 	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	public static List<BookingData> getcusbooks(int w) {
+		System.out.println("Fetching sr bike");
+		List<BookingData>	bik=getbook();
+		List<BookingData> srbd =new ArrayList<BookingData>();
+		int q = 0;
+		for(BookingData bd:bik)
+		{
+			System.out.println(w);
+			System.out.println(bd.getCustomerId());
+			if(w==bd.getCustomerId()) 
+			{
+				srbd.add(bd);
+				q++;
+			}
+		}
+		System.out.println("Fetched sr "+q);
+		return srbd;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////
 	
 	//it will update particular id

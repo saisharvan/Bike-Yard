@@ -84,7 +84,7 @@ public class BikeDao
 		return bid;
 	}
 ///////////
-	@SuppressWarnings("null")
+	
 	public static List<BikesData> getsrBikes(int w) {
 		System.out.println("Fetching sr bike");
 		List<BikesData>	bik=getBikes();

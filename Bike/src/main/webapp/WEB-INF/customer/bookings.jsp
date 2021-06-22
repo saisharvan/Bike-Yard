@@ -1,28 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    pageEncoding="ISO-8859-1"  isELIgnored="false"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Profile Details</title>
+<title>View Bookeds</title>
 </head>
-<body style="text-align:center">
-<h1 style="text-align:center">Your Booked bikes details Are Hear</h1><br><br>
-
-<form:form modelAttribute="bik">
-	  <h3>bikeName : 				 ${bik.bikeName}<br></h3> <br>   
-	  <h3>bikeCost : 				 ${bik.bikeCost}<br></h3><br>
-	  <h3>bikeColor : 			     ${bik.bikeColor}<br></h3><br>
-	  <h3>bikeDescription :		     ${bik.bikeDescription }<br></h3><br>
-	  <h3>availability :			 ${bik.availability }<br></h3><br>
-	</form:form>
-	
-	<a href="/Bike/hoome"><button>Back to Home</button></a>
+<body>
+   <table border="1">
+     <thead>
+       <tr>
+        <th>Booking Id</th><th>Bike Id</th><th>showroom admin Id</th><th>Payment </th><th>Booking Status</th>
+       </tr>
+     </thead>
+     <tbody>
+        <c:forEach var="bk" items="${list}">
+         <tr>
+	      <td>${bk.id}</td>
+	      <td>${bk.bikeId}</td>
+	      <td>${bk.showadminId}</td>
+	      <td>${bk.paymentId}</td>
+	      <td>${bk.status }</td>
+	      
+	       </tr>
+	   </c:forEach>
+     </tbody>
+   </table>
+   <a href="hoome"><button>HOME</button></a> <br><br><br>
+ 
 </body>
 </html>
-
-
-
-
-
