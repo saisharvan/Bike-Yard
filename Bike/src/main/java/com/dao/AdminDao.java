@@ -6,7 +6,7 @@ import com.entity.Customer;
 import com.entity.ShowRoomAdmin;
 import com.util.HibernateUtil;
 
-public class adminDao {
+public class AdminDao {
 	
 	//it delete the data
 		public static void delete(int id) {

@@ -2,18 +2,18 @@ package com.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.controller.CustomerController;
 import com.entity.*;
 import com.util.HibernateUtil;
+
 public class BookingDao {
 	
 	static int a;
 	static SessionFactory sessionFactory=null;
-
+	//
+	private BookingDao() {}
 	//it will save the data in database
 	public static void save(BookingData bi) {
 		System.out.println("creating BookingData");
@@ -40,17 +40,7 @@ public class BookingDao {
 
 	}
 	//////////////
-/*
-	//it display the displayAll details
-	public static  void displaybook(){
-		List<BookingData> bikList=getbook();
-		for(BookingData bik:bikList)
-		{
-			System.out.println(bik.toString());
-		}
-	}
-*/
-	//
+
 	public static List<BookingData> getbook() {
 		System.out.println("Fetching bike");
 		Session session=HibernateUtil.getSessionFactory().openSession();

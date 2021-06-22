@@ -3,17 +3,14 @@ package com.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import com.dao.*;
 import com.entity.*;
+
 
 @Controller
 public class AdminController {
@@ -48,7 +45,7 @@ public class AdminController {
 		return "admin/view";
 	}
 	
-	//it will retrive the data after click views details
+	//it will retrieve the data after click views details
 		@RequestMapping("/views")    
 		public String viewsemp(Model m){    
 			List<Customer> list=CustomerDao.getCustomers();    
@@ -56,11 +53,11 @@ public class AdminController {
 			return "admin/viewform";    
 		}
 		
-		//it retrive the editform
+		//it retrieve the edit form
 		@RequestMapping("/edits/{id}")
 		public String edit(@PathVariable int id,Model mv) {
 			System.out.println(id);
-			Customer cus=adminDao.getCustById(id);
+			Customer cus=AdminDao.getCustById(id);
 			mv.addAttribute("customer", cus);
 			return "admin/editcustomer";	
 		}
@@ -75,7 +72,7 @@ public class AdminController {
 		//it will remove the customer data
 	    @RequestMapping(value="/deletecustomer/{id}")    
 	    public String custdelete(@PathVariable int id){    
-	        adminDao.delete(id);    
+	        AdminDao.delete(id);    
 	        return "redirect:/views";    
 	    } 
 	    
@@ -109,7 +106,7 @@ public class AdminController {
 		//it will remove the bike data
 	    @RequestMapping(value="/ashowdelete/{id}")    
 	    public String showroomdelete(@PathVariable int id){    
-	    	adminDao.sdelete(id);    
+	    	AdminDao.sdelete(id);    
 	        return "redirect:/aview";    
 	    } 
 	    

@@ -14,6 +14,7 @@ public class BikeDao
 	static int a;
 	static SessionFactory sessionFactory=null;
 
+	private BikeDao() {}
 	//it will save the data in database
 	public static void save(BikesData bi) {
 		System.out.println("creating BikesData");

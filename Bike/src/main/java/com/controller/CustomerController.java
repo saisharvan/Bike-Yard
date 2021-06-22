@@ -23,9 +23,6 @@ public class CustomerController {
 
 	static int q;
 	//
-	@Autowired
-	CustomerDao acd;
-	//
 	@RequestMapping("/c")
 	public String c() 
 	{
@@ -110,7 +107,8 @@ public class CustomerController {
 		public String book(@PathVariable int id) {
 			System.out.println(id);
 			bikeId=id;
-			Customer cus=acd.getCustBy(); 
+			CustomerDao cd=new CustomerDao();
+			Customer cus=cd.getCustBy(); 
 			cus.setBookId(id);
 			BookingDao.savecus();
 			CustomerDao.update(cus); 

@@ -106,7 +106,23 @@ public class ShowroomController {
 		m.addAttribute("list",list);
 		return "ShowRoomAdmin/viewbookings";
 	}
-
+	// booking conforming edit
+	@RequestMapping("/editbook/{id}")
+	public String bookedit(@PathVariable int id,Model mv) {
+		System.out.println(id);
+		BookingData book=BookingDao.getbookById(id);  
+		mv.addAttribute("book", book);
+		return "ShowRoomAdmin/bookedit";	
+	}
+	// booking conforming update
+	 @RequestMapping(value="/editbook/updatebook",method = RequestMethod.POST)    
+	    public String updatesave(@ModelAttribute("book") BookingData bd){  
+	    	System.out.println("updating status");
+	    	BookingDao.update(bd);    
+	        System.out.println(bd);
+	        return "redirect:/bookings";    
+	    }  
+	
 	//log out page
 	@RequestMapping(value="/srlogout")    
 	public String logout(){   
