@@ -111,6 +111,15 @@ public class AdminController {
 	    } 
 	    
 /////////////////////////////////////////////////////////////
+	  //booking details of customer
+		@RequestMapping("/allbookings") 
+		public String bookings(Model m) 
+		{
+			List<BookingData> list=BookingDao.getbook();
+			m.addAttribute("list",list);
+			return "admin/bookings";
+		}
+///////////////////////////////////////////////////////////////
 			
 			//it will return the registration page
 			@RequestMapping("/reg")
