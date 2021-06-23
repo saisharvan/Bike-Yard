@@ -3,8 +3,6 @@ package com.dao;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-
 import com.controller.CustomerController;
 import com.entity.BikesData;
 import com.entity.Customer;
@@ -12,6 +10,7 @@ import com.util.HibernateUtil;
 
 
 public class CustomerDao {
+	private CustomerDao() {}
 	public static int a;
 
 	static SessionFactory sessionFactory=null;
@@ -23,6 +22,7 @@ public class CustomerDao {
 		session.beginTransaction();
 		session.save(cus);
 		session.getTransaction().commit();
+		session.close();
 		System.out.println("customer created successfully "+cus.toString());
 
 	}
@@ -32,6 +32,7 @@ public class CustomerDao {
 	public static List<Customer> getCustomers() {
 		System.out.println("Fetching Customer");
 		Session session=HibernateUtil.getSessionFactory().openSession();
+		@SuppressWarnings("unchecked")
 		List<Customer>	cust=session.createQuery("from Customer").list();
 		session.close();
 		System.out.println("Fetched "+cust.size());
@@ -41,7 +42,7 @@ public class CustomerDao {
 
 	public static Customer getCustById(int id) {
 		a=id;
-		System.out.println("Fetching Customer");
+		System.out.println("Fetching Customer by id");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		Customer cust=session.load(Customer.class, id);
 		session.close();
@@ -52,12 +53,11 @@ public class CustomerDao {
 	{
 		Customer cus=CustomerDao.getCustBy(); 
 		int bk=cus.getBookId();
-		BikesData bd=BikeDao.getbikBy(bk);
-		return bd;
+		return BikeDao.getbikBy(bk);
 	}
 	////////////////////////
 	public static Customer getCustBy() {
-		System.out.println("Fetching Customer");
+		System.out.println("Fetching Customer using particular id");
 		List<Customer> custList=getCustomers();
 		Customer c=new Customer();
 		for(Customer cust:custList)
@@ -72,7 +72,7 @@ public class CustomerDao {
 		return c;
 	}
 	///////////////*******************//////////////////
-	public static String CheckIdPassword(String email,String pass) {
+	public static String checkIdPassword(String email,String pass) {
 		List<Customer> custList=getCustomers();
 		boolean che = false;
 		for(Customer cust:custList)
@@ -82,7 +82,7 @@ public class CustomerDao {
 			if(email.equals(idd) && pass.equals(passs)) 
 			{
 				a=cust.getId(); 
-				CustomerController.CusId=cust.getId();
+				CustomerController.cusId=cust.getId();
 				System.out.println("checked id "+a);
 				che=true;
 				break;

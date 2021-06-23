@@ -12,6 +12,7 @@ import com.dao.*;
 import com.entity.*;
 
 
+
 @Controller
 public class AdminController {
 	
@@ -62,6 +63,7 @@ public class AdminController {
 			return "admin/editcustomer";	
 		}
 		// It updates model object.   
+		@SuppressWarnings({ })
 		@RequestMapping(value="/edits/updatecustomer")    
 		public String editsave(@ModelAttribute("customer") Customer cus){  
 			System.out.println("updating");
@@ -100,7 +102,7 @@ public class AdminController {
 		public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){  
 			System.out.println("updating");
 			ShowroomDao.update(show);    
-			System.out.println(show);
+			//System.out.println(show);
 			return "redirect:/aview";    
 		} 
 		//it will remove the bike data

@@ -2,11 +2,9 @@ package com.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.entity.BikesData;
-import com.entity.Customer;
 import com.util.HibernateUtil;
 
 public class BikeDao 
@@ -22,6 +20,7 @@ public class BikeDao
 		session.beginTransaction();
 		session.save(bi);
 		session.getTransaction().commit();
+		session.close();
 		System.out.println("BikesData created subbessfully "+bi.toString());
 
 	}
@@ -34,6 +33,7 @@ public class BikeDao
 		session.beginTransaction();
 		session.save(bi);
 		session.getTransaction().commit();
+		session.close();
 		System.out.println("BikesData created subbessfully "+bi.toString());
 
 	}
@@ -83,12 +83,27 @@ public class BikeDao
 		}
 		return bid;
 	}
+	public static int getbikCostById(int a) {
+		System.out.println("Fetching Customer");
+		List<BikesData> bl=getBikes();
+		int c = 0;
+		for(BikesData bd:bl)
+		{
+			if(a==bd.getId()) 
+			{
+				System.out.println("bike id "+a);
+				c=bd.getBikeCost();
+				break;
+			}
+		}
+		return c;
+	}
 ///////////
 	
 	public static List<BikesData> getsrBikes(int w) {
 		System.out.println("Fetching sr bike");
 		List<BikesData>	bik=getBikes();
-		List<BikesData> srbd =new ArrayList<BikesData>();
+		List<BikesData> srbd =new ArrayList<>();
 		int q = 0;
 		for(BikesData bd:bik)
 		{
@@ -131,19 +146,9 @@ public class BikeDao
 		session.beginTransaction();
 		session.delete(c);
 		session.getTransaction().commit();
-		session.close();
-		System.out.println("deleted subbessfully");		
+		session.close();	
+		
 	}
 
-	//delete all
-	public void deleteAll(){
-		Session session=HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		Query query=	session.createQuery("Delete from bike");
-		query.executeUpdate();
-		session.getTransaction().commit();
-		session.close();
-		System.out.println("deleted all bikomers data from database");
-
-	}
+	
 }

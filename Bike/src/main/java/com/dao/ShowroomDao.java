@@ -4,13 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-
-import com.entity.Customer;
 import com.entity.ShowRoomAdmin;
 import com.util.HibernateUtil;
 
 public class ShowroomDao {
+	private ShowroomDao() {}
 	/////////////////
 		public static int a;
 		public static int b;
@@ -24,6 +22,7 @@ public class ShowroomDao {
 			session.beginTransaction();
 			session.save(show);
 			session.getTransaction().commit();
+			session.close();
 			System.out.println("ShowRoomAdmin created successfully "+show.toString());
 		}
 
@@ -66,7 +65,7 @@ public class ShowroomDao {
 		
 		
 		/////////////////////////////////
-		public static String CheckIdPassword(String email,String pass) {
+		public static String checkIdPassword(String email,String pass) {
 			List<ShowRoomAdmin> showList=getShowRoomAdmins();
 			boolean che = false;
 			for(ShowRoomAdmin show:showList)

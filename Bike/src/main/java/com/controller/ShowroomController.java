@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import com.dao.*;
 import com.entity.*;
 
@@ -36,7 +35,7 @@ public class ShowroomController {
 		String pass=req.getParameter("Pass");
 		System.out.println(id+" "+pass);
 		
-		return ShowroomDao.CheckIdPassword(id,pass);
+		return ShowroomDao.checkIdPassword(id,pass);
 		
 	}
 
@@ -63,7 +62,6 @@ public class ShowroomController {
 	//it give show by id
 	@RequestMapping("/srprofile")
 	public String profile(Model mv) {
-		int id=a;
 		ShowRoomAdmin show= ShowroomDao.getShowBy();
 		System.out.println("after "+show.toString());
 		mv.addAttribute("sho",show);
@@ -115,7 +113,7 @@ public class ShowroomController {
 		return "ShowRoomAdmin/bookedit";	
 	}
 	// booking conforming update
-	 @RequestMapping(value="/editbook/updatebook",method = RequestMethod.POST)    
+	 @RequestMapping(value="/editbook/updatebook")    
 	    public String updatesave(@ModelAttribute("book") BookingData bd){  
 	    	System.out.println("updating status");
 	    	BookingDao.update(bd);    
@@ -158,7 +156,7 @@ public class ShowroomController {
 		}
 		
 	    
-	    @RequestMapping(value="/editsr/updatebikesr",method = RequestMethod.POST)    
+	    @RequestMapping(value="/editsr/updatebikesr")    
 	    public String editsave(@ModelAttribute("bike") BikesData cus){  
 	    	System.out.println("updating");
 	    	BikeDao.update(cus);    

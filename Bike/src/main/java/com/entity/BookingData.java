@@ -89,7 +89,6 @@ public class BookingData {
 
 	public BookingData() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BookingData(int bikeId, int customerId, int showadminId, int paymentId, String status) {

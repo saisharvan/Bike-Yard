@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import com.dao.*;
 import com.entity.*;
 
@@ -16,8 +15,8 @@ import com.entity.*;
 @Controller
 public class CustomerController {
 	
-	public static int CusId;
-	public static int ShowId;
+	public static int cusId;
+	public static int showId;
 	public static int bikeId;
 
 	static int q;
@@ -40,7 +39,7 @@ public class CustomerController {
 		String id=req.getParameter("Id");
 		String pass=req.getParameter("Pass");
 		System.out.println(id+" "+pass);
-		return CustomerDao.CheckIdPassword(id,pass);
+		return CustomerDao.checkIdPassword(id,pass);
 		
 	}
 
@@ -50,12 +49,7 @@ public class CustomerController {
 		return "customer/hoome";		
 	}
 
-	//it will return the registration page
-	@RequestMapping("/regs")
-	public String showForm(Model mv) {
-		mv.addAttribute("customer", new Customer());	
-		return "registrationform";	
-	}
+	
 	//it will return the registration page
 	@RequestMapping("/regi")
 	public String registration(Model mv) {
@@ -64,14 +58,14 @@ public class CustomerController {
 	}
 
 	//it will save the data into collection after oopen the data
-	@RequestMapping(value="/saves",method = RequestMethod.POST)    
+	@RequestMapping(value="/saves")    
 	public String save(@ModelAttribute("customer") Customer cus){
 		CustomerDao.save(cus);   
 		return "redirect:/views";//will redirect to viewsemp request mapping    
 	}
 	//it will save the data into collection after open the login page
-	@RequestMapping(value="/custsave",method = RequestMethod.POST)    
-	public String Customersave(@ModelAttribute("customer") Customer cus){
+	@RequestMapping(value="/custsave")    
+	public String customerSave(@ModelAttribute("customer") Customer cus){
 		CustomerDao.save(cus);   
 		return "redirect:/c";//will redirect to viewsemp request mapping    
 	}
@@ -110,13 +104,13 @@ public class CustomerController {
 			cus.setBookId(id);
 			BookingDao.savecus();
 			CustomerDao.update(cus); 
-			//mv.addAttribute("customer", cus);
+			
 			return "customer/sucess";	
-		}
+		}//mv addAttribute("customer", cus)
 		//vb
 		@RequestMapping("/viewbooking")
 		public String bookedData(Model mv) {
-			List<BookingData> list=BookingDao.getcusbooks(CusId);
+			List<BookingData> list=BookingDao.getcusbooks(cusId);
 			mv.addAttribute("list",list);
 			return "customer/bookings";		
 		}
@@ -132,7 +126,7 @@ public class CustomerController {
 
 	
 	// It updates model object at cust
-	@RequestMapping(value="/custedit/updatecustomer",method = RequestMethod.POST)    
+	@RequestMapping(value="/custedit/updatecustomer")    
 	public String editsaveing(@ModelAttribute("customer") Customer cus){  
 		System.out.println("updating");
 		CustomerDao.update(cus);    
@@ -140,17 +134,10 @@ public class CustomerController {
 		return "redirect:/hoome";    
 	} 
 ///////////////////////////////////////////////////
-	/*
-	///it is use for customer
-	@RequestMapping("/custview")    
-	public String custview(Model m){    
-		List<BikesData> list=BikeDao.getBikes();    
-		m.addAttribute("list",list);  
-		return "customer/custviewbikes";    
-	}*/
+	
 	@RequestMapping("/custview/{id}")    
 	public String sacustview(@PathVariable int id,Model m){   
-		ShowId=id;
+		showId=id;
 		List<BikesData> list=BikeDao.getsrBikes(id);    
 		m.addAttribute("list",list);  
 		return "customer/custviewbikes";    

@@ -21,14 +21,15 @@ public class BookingDao {
 		session.beginTransaction();
 		session.save(bi);
 		session.getTransaction().commit();
+		session.close();
 		System.out.println("BookingData created subbessfully "+bi.toString());
 
 	}
 	//save customer booking data
 	public static void savecus() {
-		 int p=0;
+		 int p=BikeDao.getbikCostById(CustomerController.bikeId);
 		 String status="In progress";
-		BookingData bd = new BookingData(CustomerController.bikeId,CustomerController.CusId,CustomerController.ShowId,p,status);
+		BookingData bd = new BookingData(CustomerController.bikeId,CustomerController.cusId,CustomerController.showId,p,status);
 		System.out.println("creating BookingData");
 		
 		System.out.println(bd.toString());
@@ -36,6 +37,7 @@ public class BookingDao {
 		session.beginTransaction();
 		session.save(bd);
 		session.getTransaction().commit();
+		session.close();
 		System.out.println("BookingData created subbessfully "+bd.toString());
 
 	}
@@ -79,7 +81,7 @@ public class BookingDao {
 	public static List<BookingData> getbooks(int w) {
 		System.out.println("Fetching sr bike");
 		List<BookingData>	bik=getbook();
-		List<BookingData> srbd =new ArrayList<BookingData>();
+		List<BookingData> srbd =new ArrayList<>();
 		int q = 0;
 		for(BookingData bd:bik)
 		{
@@ -98,7 +100,7 @@ public class BookingDao {
 	public static List<BookingData> getcusbooks(int w) {
 		System.out.println("Fetching sr bike");
 		List<BookingData>	bik=getbook();
-		List<BookingData> srbd =new ArrayList<BookingData>();
+		List<BookingData> srbd =new ArrayList<>();
 		int q = 0;
 		for(BookingData bd:bik)
 		{

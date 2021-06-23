@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Bike Form</title>
+<title>Add Bike Form</title>
 </head>
 <body>
 	<h1>Add Bike</h1>
 	<form:form action="save" modelAttribute="bike" method="post">
-		<table>
+		<table><caption>Add Bike Form</caption>
 			<tr>
 				<td>Bike Name:</td>
 				<td><form:input path="bikeName" /></td>

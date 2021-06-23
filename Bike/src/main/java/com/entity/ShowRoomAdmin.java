@@ -34,12 +34,6 @@ package com.entity;
 		
 		
 		
-		
-		
-		
-		public ShowRoomAdmin() {}
-		
-		
 		public Integer getShowRoomId() {
 			return showRoomId;
 		}

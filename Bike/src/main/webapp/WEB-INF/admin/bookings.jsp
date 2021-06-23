@@ -8,7 +8,7 @@
 <title>View Bookeds</title>
 </head>
 <body style="colour:pink">
-   <table border="1">
+   <table>
      <thead>
        <tr>
         <th>Booking Id</th><th>showadmin Id</th><th>Bike Id</th><th>Customer Id</th><th>Payment Id</th><th>Booking Status</th>

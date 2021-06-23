@@ -7,7 +7,7 @@ import com.entity.ShowRoomAdmin;
 import com.util.HibernateUtil;
 
 public class AdminDao {
-	
+	private AdminDao(){}
 	//it delete the data
 		public static void delete(int id) {
 			System.out.println("delete customer");
