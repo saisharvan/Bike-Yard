@@ -102,7 +102,7 @@ public class AdminController {
 		public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){  
 			System.out.println("updating");
 			ShowroomDao.update(show);    
-			//System.out.println(show);
+			System.out.println(show);
 			return "redirect:/aview";    
 		} 
 		//it will remove the bike data

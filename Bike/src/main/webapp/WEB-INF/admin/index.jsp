@@ -1,5 +1,8 @@
-<html>
-<title style="text-aling:center">Admin Login Page</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title >Admin Login Page</title>
+</head>
 <body>
 
 <form action="add" method="post">

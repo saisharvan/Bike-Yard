@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <title>Customer Login/Register</title>
+</head>
 <body>
 		
 			<div style="text-align:center">

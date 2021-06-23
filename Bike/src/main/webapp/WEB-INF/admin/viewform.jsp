@@ -3,15 +3,15 @@
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Customer details</title>
 </head>
 
 <body>
-<table border="2" width="70%" cellpadding="2">  
-<tr><th>S.No</th><th>FirstName</th><th>LastName</th><th>Age<th>Gender</th><th>Email</th><th>Phone Number</th><th>Address</th><th>Delete</th></tr>  
+<table border="2">  
+<tr><th id="id">S.No</th><th id="id">FirstName</th><th id="id">LastName</th><th id="id">Age<th id="id">Gender</th><th id="id">Email</th><th id="id">Phone Number</th><th id="id">Address</th><th id="id">Delete</th></tr>  
    <c:forEach var="s" items="${list}">   
    <tr> 
    <td>${s.id }</td> 

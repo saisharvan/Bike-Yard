@@ -2,16 +2,18 @@
     pageEncoding="ISO-8859-1"  isELIgnored="false"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>View Bookeds</title>
 </head>
 <body style="colour:pink">
    <table>
+   <caption>Super Admin Booking details</caption>
+   
      <thead>
        <tr>
-        <th>Booking Id</th><th>showadmin Id</th><th>Bike Id</th><th>Customer Id</th><th>Booking Status</th>
+        <th id="booking">Booking Id</th><th id="showadmin">showadmin Id</th><th id="Bike">Bike Id</th><th id="customer">Customer Id</th><th id="status">Booking Status</th>
        </tr>
      </thead>
      <tbody>

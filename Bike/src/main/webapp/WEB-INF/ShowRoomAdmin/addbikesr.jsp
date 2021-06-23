@@ -3,7 +3,7 @@
  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Bike Form</title>
@@ -12,6 +12,7 @@
 	<h1>Add Bike</h1>
 	<form:form action="savesr" modelAttribute="bike" method="post">
 		<table>
+		
 			<tr>
 				<td>Bike Name:</td>
 				<td><form:input path="bikeName" /></td>

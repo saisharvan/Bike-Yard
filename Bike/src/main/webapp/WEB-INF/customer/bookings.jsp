@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"  isELIgnored="false"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>View Bookeds</title>
@@ -11,7 +11,7 @@
    <table border="1">
      <thead>
        <tr>
-        <th>Booking Id</th><th>Bike Id</th><th>showroom admin Id</th><th>Booking Status</th>
+        <th id="id">Booking Id</th><th id="bid">Bike Id</th><th id="sid">showroom admin Id</th><th id="bsid">Booking Status</th>
        </tr>
      </thead>
      <tbody>
