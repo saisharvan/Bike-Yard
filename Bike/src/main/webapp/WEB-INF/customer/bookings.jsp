@@ -11,7 +11,7 @@
    <table border="1">
      <thead>
        <tr>
-        <th>Booking Id</th><th>Bike Id</th><th>showroom admin Id</th><th>Payment </th><th>Booking Status</th>
+        <th>Booking Id</th><th>Bike Id</th><th>showroom admin Id</th><th>Booking Status</th>
        </tr>
      </thead>
      <tbody>
@@ -20,7 +20,6 @@
 	      <td>${bk.id}</td>
 	      <td>${bk.bikeId}</td>
 	      <td>${bk.showadminId}</td>
-	      <td>${bk.paymentId}</td>
 	      <td>${bk.status }</td>
 	      
 	       </tr>

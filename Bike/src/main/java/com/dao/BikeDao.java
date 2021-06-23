@@ -84,7 +84,7 @@ public class BikeDao
 		return bid;
 	}
 	public static int getbikCostById(int a) {
-		System.out.println("Fetching Customer");
+		System.out.println("Fetching bike cost");
 		List<BikesData> bl=getBikes();
 		int c = 0;
 		for(BikesData bd:bl)
@@ -93,6 +93,7 @@ public class BikeDao
 			{
 				System.out.println("bike id "+a);
 				c=bd.getBikeCost();
+				System.out.println("Fetching bike cost"+c);
 				break;
 			}
 		}
@@ -103,7 +104,7 @@ public class BikeDao
 	public static List<BikesData> getsrBikes(int w) {
 		System.out.println("Fetching sr bike");
 		List<BikesData>	bik=getBikes();
-		List<BikesData> srbd =new ArrayList<>();
+		List<BikesData> srbd =new ArrayList<BikesData>();
 		int q = 0;
 		for(BikesData bd:bik)
 		{

@@ -11,8 +11,8 @@
    <table border="1">
      <thead>
        <tr>
-        <th>Booking Id</th><th>Bike Id</th><th>Customer Id</th><th>Payment Id</th><th>Booking Status</th>
-         <th colspan="2">Actions</th>
+        <th>Booking Id</th><th>Bike Id</th><th>Customer Id</th><th>Booking Status</th>
+         <th>Actions</th>
        </tr>
      </thead>
      <tbody>
@@ -21,7 +21,6 @@
 	      <td>${bk.id}</td>
 	      <td>${bk.bikeId}</td>
 	      <td>${bk.customerId}</td>
-	      <td>${bk.paymentId}</td>
 	      <td>${bk.status }</td>
 	      <td><a href="editbook/${bk.id}">Edit</a></td>
 	       </tr>

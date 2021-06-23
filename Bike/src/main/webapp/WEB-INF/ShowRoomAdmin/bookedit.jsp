@@ -17,7 +17,6 @@
 		Booking Id:: ${book.id} <br><br>
 		Bike Id:: ${book.bikeId}<br><br>
 		Customer Id:: ${book.customerId}<br><br>
-		Payment Id:: ${book.paymentId}<br><br>
 		Booking Status: <form:input path="status" /><br><br>
 		
 		

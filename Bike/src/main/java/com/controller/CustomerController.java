@@ -100,11 +100,7 @@ public class CustomerController {
 		public String book(@PathVariable int id) {
 			System.out.println(id);
 			bikeId=id;
-			Customer cus=CustomerDao.getCustBy(); 
-			cus.setBookId(id);
-			BookingDao.savecus();
-			CustomerDao.update(cus); 
-			
+			BookingDao.savecusorder();
 			return "customer/sucess";	
 		}//mv addAttribute("customer", cus)
 		//vb

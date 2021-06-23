@@ -11,7 +11,7 @@
    <table>
      <thead>
        <tr>
-        <th>Booking Id</th><th>showadmin Id</th><th>Bike Id</th><th>Customer Id</th><th>Payment Id</th><th>Booking Status</th>
+        <th>Booking Id</th><th>showadmin Id</th><th>Bike Id</th><th>Customer Id</th><th>Booking Status</th>
        </tr>
      </thead>
      <tbody>
@@ -21,7 +21,6 @@
 	      <td>${bk.showadminId}</td>
 	      <td>${bk.bikeId}</td>
 	      <td>${bk.customerId}</td>
-	      <td>${bk.paymentId}</td>
 	      <td>${bk.status }</td>
 	       </tr>
 	   </c:forEach>

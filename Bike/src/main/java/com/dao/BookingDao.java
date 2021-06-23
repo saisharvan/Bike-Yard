@@ -26,8 +26,9 @@ public class BookingDao {
 
 	}
 	//save customer booking data
-	public static void savecus() {
+	public static void savecusorder() {
 		 int p=BikeDao.getbikCostById(CustomerController.bikeId);
+		 System.out.println("ccccccccccccccccccc"+p);
 		 String status="In progress";
 		BookingData bd = new BookingData(CustomerController.bikeId,CustomerController.cusId,CustomerController.showId,p,status);
 		System.out.println("creating BookingData");
@@ -81,7 +82,7 @@ public class BookingDao {
 	public static List<BookingData> getbooks(int w) {
 		System.out.println("Fetching sr bike");
 		List<BookingData>	bik=getbook();
-		List<BookingData> srbd =new ArrayList<>();
+		List<BookingData> srbd =new ArrayList<BookingData>();
 		int q = 0;
 		for(BookingData bd:bik)
 		{
@@ -100,7 +101,7 @@ public class BookingDao {
 	public static List<BookingData> getcusbooks(int w) {
 		System.out.println("Fetching sr bike");
 		List<BookingData>	bik=getbook();
-		List<BookingData> srbd =new ArrayList<>();
+		List<BookingData> srbd =new ArrayList<BookingData>();
 		int q = 0;
 		for(BookingData bd:bik)
 		{
