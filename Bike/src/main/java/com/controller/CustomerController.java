@@ -3,6 +3,10 @@ package com.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +24,8 @@ public class CustomerController {
 	public static int bikeId;
 
 	static int q;
+	
+	 private static final Logger logger = LogManager.getLogger(CustomerController.class);
 	//
 	@RequestMapping("/c")
 	public String c() 
@@ -38,7 +44,8 @@ public class CustomerController {
 	public String sai(HttpServletRequest req,HttpServletResponse res) {
 		String id=req.getParameter("Id");
 		String pass=req.getParameter("Pass");
-		System.out.println(id+" "+pass);
+		BasicConfigurator.configure();  
+		  logger.info(id+" "+pass);
 		return CustomerDao.checkIdPassword(id,pass);
 		
 	}
@@ -73,9 +80,10 @@ public class CustomerController {
 	//it give cus by id
 	@RequestMapping("/profile")
 	public String profile(Model mv) {
-		System.out.println("controller"+CustomerDao.a);
+		BasicConfigurator.configure();  
+		  logger.info("controller"+CustomerDao.a);
 		Customer cus= CustomerDao.getCustBy();
-		System.out.println("after "+cus.getId());
+		logger.info("after "+cus.getId());
 		mv.addAttribute("cus",cus);
 		return "customer/profile";	
 	}
@@ -97,8 +105,9 @@ public class CustomerController {
 		}
 	
 		@RequestMapping("/bookc/{id}")
-		public String book(@PathVariable int id) {
-			System.out.println(id);
+		public static String book(@PathVariable int id) {
+			BasicConfigurator.configure();  
+			  logger.info(id);
 			bikeId=id;
 			BookingDao.savecusorder();
 			return "customer/sucess";	
@@ -114,7 +123,7 @@ public class CustomerController {
 	//it retrive the editform in cust
 	@RequestMapping("/custedit/{id}")
 	public String custedit(@PathVariable int id,Model mv) {
-		System.out.println(id);
+		logger.info(id);
 		Customer cus=CustomerDao.getCustBy();  
 		mv.addAttribute("customer", cus);
 		return "customer/custedit";	
@@ -123,16 +132,17 @@ public class CustomerController {
 	
 	// It updates model object at cust
 	@RequestMapping(value="/custedit/updatecustomer")    
-	public String editsaveing(@ModelAttribute("customer") Customer cus){  
-		System.out.println("updating");
+	public String editsaveing(@ModelAttribute("customer") Customer cus){ 
+		BasicConfigurator.configure();  
+		  logger.info("updating");
 		CustomerDao.update(cus);    
-		System.out.println(cus);
+		logger.info(cus);
 		return "redirect:/hoome";    
 	} 
 ///////////////////////////////////////////////////
 	
 	@RequestMapping("/custview/{id}")    
-	public String sacustview(@PathVariable int id,Model m){   
+	public static String sacustview(@PathVariable int id,Model m){   
 		showId=id;
 		List<BikesData> list=BikeDao.getsrBikes(id);    
 		m.addAttribute("list",list);  

@@ -10,7 +10,8 @@
 </head>
 
 <body>
-<table border="2">  
+<table >  
+ <caption>View Customer details</caption>
 <tr><th id="id">S.No</th><th id="id">FirstName</th><th id="id">LastName</th><th id="id">Age<th id="id">Gender</th><th id="id">Email</th><th id="id">Phone Number</th><th id="id">Address</th><th id="id">Delete</th></tr>  
    <c:forEach var="s" items="${list}">   
    <tr> 

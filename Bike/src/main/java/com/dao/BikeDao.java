@@ -2,6 +2,10 @@ package com.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.entity.BikesData;
@@ -13,28 +17,32 @@ public class BikeDao
 	static SessionFactory sessionFactory=null;
 
 	private BikeDao() {}
+	//
+	private static final Logger logger = LogManager.getLogger(BikeDao.class);
 	//it will save the data in database
 	public static void save(BikesData bi) {
-		System.out.println("creating BikesData");
+		BasicConfigurator.configure();  
+		  logger.info("creating BikesData");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(bi);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("BikesData created subbessfully "+bi.toString());
+		logger.info("BikesData created subbessfully "+bi.toString());
 
 	}
 	////////////savesr
 	public static void savesr(BikesData bi) {
-		System.out.println("creating BikesData");
+		BasicConfigurator.configure();  
+		  logger.info("creating BikesData");
 		bi.setSraId(ShowroomDao.b);
-		System.out.println(bi.toString());
+		logger.info(bi.toString());
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(bi);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("BikesData created subbessfully "+bi.toString());
+		logger.info("BikesData created subbessfully "+bi.toString());
 
 	}
 	//////////////
@@ -44,39 +52,43 @@ public class BikeDao
 		List<BikesData> bikList=getBikes();
 		for(BikesData bik:bikList)
 		{
-			System.out.println(bik.toString());
+			BasicConfigurator.configure();  
+			  logger.info(bik.toString());
 		}
 	}
 
 	//
 	public static List<BikesData> getBikes() {
-		System.out.println("Fetching bike");
+		BasicConfigurator.configure();  
+		  logger.info("Fetching bike");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		List<BikesData>	bik=session.createQuery("from BikesData").list();
 		session.close();
-		System.out.println("Fetched "+bik.size());
+		logger.info("Fetched "+bik.size());
 		return bik;
 	}
 	//
 	public static BikesData getbikById(int id) {
 		a=id;
-		System.out.println("Fetching BikesData");
+		BasicConfigurator.configure();  
+		  logger.info("Fetching BikesData");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		BikesData bik=session.load(BikesData.class, id);
-		System.out.println(bik.toString());
+		logger.info(bik.toString());
 		session.close();
 		return bik;
 	}
 	//////////////////////////////
 	public static BikesData getbikBy(int a) {
-		System.out.println("Fetching Customer");
+		BasicConfigurator.configure();  
+		  logger.info("Fetching Customer");
 		List<BikesData> bl=getBikes();
 		BikesData bid=new BikesData();
 		for(BikesData bd:bl)
 		{
 			if(a==bd.getId()) 
 			{
-				System.out.println("bike id "+a);
+				logger.info("bike id "+a);
 				bid=bd;
 				break;
 			}
@@ -84,16 +96,17 @@ public class BikeDao
 		return bid;
 	}
 	public static int getbikCostById(int a) {
-		System.out.println("Fetching bike cost");
+		BasicConfigurator.configure();  
+		  logger.info("Fetching bike cost");
 		List<BikesData> bl=getBikes();
 		int c = 0;
 		for(BikesData bd:bl)
 		{
 			if(a==bd.getId()) 
 			{
-				System.out.println("bike id "+a);
+				logger.info("bike id "+a);
 				c=bd.getBikeCost();
-				System.out.println("Fetching bike cost"+c);
+				logger.info("Fetching bike cost"+c);
 				break;
 			}
 		}
@@ -102,28 +115,30 @@ public class BikeDao
 ///////////
 	
 	public static List<BikesData> getsrBikes(int w) {
-		System.out.println("Fetching sr bike");
+		BasicConfigurator.configure();  
+		  logger.info("Fetching sr bike");
 		List<BikesData>	bik=getBikes();
 		List<BikesData> srbd =new ArrayList<BikesData>();
 		int q = 0;
 		for(BikesData bd:bik)
 		{
-			System.out.println(w);
-			System.out.println(bd.getSraId());
+			logger.info(w);
+			logger.info(bd.getSraId());
 			if(w==bd.getSraId()) 
 			{
 				srbd.add(bd);
 				q++;
 			}
 		}
-		System.out.println("Fetched sr "+q);
+		logger.info("Fetched sr "+q);
 		return srbd;
 	}
 //////////
 	
 	//it will update particular id
 	public static void update(BikesData bi) {
-		System.out.println("Updating BikesData");
+		BasicConfigurator.configure();
+		logger.info("Updating BikesData");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		BikesData bb=session.load(BikesData.class, bi.getId());
@@ -132,16 +147,17 @@ public class BikeDao
 		bb.setBikeColor(bi.getBikeColor());
 		bb.setBikeDescription(bi.getBikeDescription());
 		bb.setAvailability(bi.getAvailability());
-		System.out.println(bi.toString());
+		logger.info(bi.toString());
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("Updated");
+		logger.info("Updated");
 
 	}
 
 	//it delete the data
 	public static void delete(int id) {
-		System.out.println("delete bike");
+		BasicConfigurator.configure();  
+		logger.info("delete bike");
 		BikesData c=getbikById(id);
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

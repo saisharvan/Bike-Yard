@@ -3,6 +3,10 @@ package com.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +19,7 @@ import com.entity.*;
 public class ShowroomController {
 	
 	int a=ShowroomDao.take();
+	private static final Logger logger = LogManager.getLogger(ShowroomController.class);
 	//
 	@RequestMapping("/s")
 	public String s() 
@@ -33,7 +38,8 @@ public class ShowroomController {
 	public String sai(HttpServletRequest req,HttpServletResponse res) {
 		String id=req.getParameter("Id");
 		String pass=req.getParameter("Pass");
-		System.out.println(id+" "+pass);
+		BasicConfigurator.configure();  
+		  logger.info(id+" "+pass);
 		
 		return ShowroomDao.checkIdPassword(id,pass);
 		
@@ -63,7 +69,8 @@ public class ShowroomController {
 	@RequestMapping("/srprofile")
 	public String profile(Model mv) {
 		ShowRoomAdmin show= ShowroomDao.getShowBy();
-		System.out.println("after "+show.toString());
+		BasicConfigurator.configure();  
+		  logger.info("after "+show.toString());
 		mv.addAttribute("sho",show);
 		return "ShowRoomAdmin/profile";	
 	}
@@ -72,7 +79,8 @@ public class ShowroomController {
 	//it retrive the editform in showt
 	@RequestMapping("/showedit/{id}")
 	public String showtedit(@PathVariable int id,Model mv) {
-		System.out.println(id);
+		BasicConfigurator.configure();  
+		  logger.info(id);
 		ShowRoomAdmin show=ShowroomDao.getShowBy();  
 		mv.addAttribute("ShowRoomAdmin", show);
 		return "ShowRoomAdmin/showedit";	
@@ -81,10 +89,11 @@ public class ShowroomController {
 	
 	// It updates model object at showt
 	@RequestMapping(value="/showedit/updateshowroom")    
-	public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){  
-		System.out.println("updating");
+	public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){ 
+		BasicConfigurator.configure();  
+		  logger.info("updating");
 		ShowroomDao.update(show);    
-		System.out.println(show);
+		logger.info(show);
 		return "redirect:/srhome";    
 	} 
 	
@@ -107,7 +116,8 @@ public class ShowroomController {
 	// booking conforming edit
 	@RequestMapping("/editbook/{id}")
 	public String bookedit(@PathVariable int id,Model mv) {
-		System.out.println(id);
+		BasicConfigurator.configure();  
+		  logger.info(id);
 		BookingData book=BookingDao.getbookById(id);  
 		mv.addAttribute("book", book);
 		return "ShowRoomAdmin/bookedit";	
@@ -115,9 +125,10 @@ public class ShowroomController {
 	// booking conforming update
 	 @RequestMapping(value="/editbook/updatebook")    
 	    public String updatesave(@ModelAttribute("book") BookingData bd){  
-	    	System.out.println("updating status");
+		 	BasicConfigurator.configure();  
+		 	 logger.info("updating status");
 	    	BookingDao.update(bd);    
-	        System.out.println(bd);
+	        logger.info(bd);
 	        return "redirect:/bookings";    
 	    }  
 	
@@ -139,7 +150,8 @@ public class ShowroomController {
 		@RequestMapping(value="/savesr")    
 		public String save(@ModelAttribute("bike") BikesData cus){
 			cus.setSraId(a);
-			System.out.println(cus.toString());
+			BasicConfigurator.configure();  
+			  logger.info(cus.toString());
 			BikeDao.savesr(cus);   
 			return "redirect:/showview";//will redirect to viewemp request mapping    
 		}
@@ -149,7 +161,8 @@ public class ShowroomController {
 		//it retrive the editform
 		@RequestMapping("/editsr/{id}")
 		public String edit(@PathVariable int id,Model mv) {
-			System.out.println(id);
+			BasicConfigurator.configure();  
+			  logger.info(id);
 			BikesData cus=BikeDao.getbikById(id);  
 			mv.addAttribute("bike", cus);
 			return "ShowRoomAdmin/bikeeditsr";	
@@ -157,10 +170,11 @@ public class ShowroomController {
 		
 	    
 	    @RequestMapping(value="/editsr/updatebikesr")    
-	    public String editsave(@ModelAttribute("bike") BikesData cus){  
-	    	System.out.println("updating");
+	    public String editsave(@ModelAttribute("bike") BikesData cus){
+	    	BasicConfigurator.configure();  
+			  logger.info("updating");
 	    	BikeDao.update(cus);    
-	        System.out.println(cus);
+	        logger.info(cus);
 	        return "redirect:/showview";    
 	    }    
 

@@ -2,6 +2,8 @@ package com.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.controller.CustomerController;
@@ -14,64 +16,66 @@ public class BookingDao {
 	static SessionFactory sessionFactory=null;
 	//
 	private BookingDao() {}
+	//
+	private static final Logger logger = LogManager.getLogger(BookingDao.class); 
 	//it will save the data in database
 	public static void save(BookingData bi) {
-		System.out.println("creating BookingData");
+		logger.info("creating BookingData");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(bi);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("BookingData created subbessfully "+bi.toString());
+		logger.info("BookingData created subbessfully "+bi.toString());
 
 	}
 	//save customer booking data
 	public static void savecusorder() {
 		 int p=BikeDao.getbikCostById(CustomerController.bikeId);
-		 System.out.println("ccccccccccccccccccc"+p);
+		 logger.info("ccccccccccccccccccc"+p);
 		 String status="In progress";
 		BookingData bd = new BookingData(CustomerController.bikeId,CustomerController.cusId,CustomerController.showId,p,status);
-		System.out.println("creating BookingData");
+		logger.info("creating BookingData");
 		
-		System.out.println(bd.toString());
+		logger.info(bd.toString());
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(bd);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("BookingData created subbessfully "+bd.toString());
+		logger.info("BookingData created subbessfully "+bd.toString());
 
 	}
 	//////////////
 
 	public static List<BookingData> getbook() {
-		System.out.println("Fetching bike");
+		logger.info("Fetching bike");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		List<BookingData>	bik=session.createQuery("from BookingData").list();
 		session.close();
-		System.out.println("Fetched "+bik.size());
+		logger.info("Fetched "+bik.size());
 		return bik;
 	}
 	//
 	public static BookingData getbookById(int id) {
 		a=id;
-		System.out.println("Fetching BookingData");
+		logger.info("Fetching BookingData");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		BookingData bik=session.load(BookingData.class, id);
-		System.out.println(bik.toString());
+		logger.info(bik.toString());
 		session.close();
 		return bik;
 	}
 	//////////////////////////////
 	public static BookingData getbooksBy(int a) {
-		System.out.println("Fetching Customer");
+		logger.info("Fetching Customer");
 		List<BookingData> bl=getbook();
 		BookingData bid=new BookingData();
 		for(BookingData bd:bl)
 		{
 			if(a==bd.getId()) 
 			{
-				System.out.println("bike id "+a);
+				logger.info("bike id "+a);
 				bid=bd;
 				break;
 			}
@@ -80,40 +84,40 @@ public class BookingDao {
 	}
 ///////////
 	public static List<BookingData> getbooks(int w) {
-		System.out.println("Fetching sr bike");
+		logger.info("Fetching sr bike");
 		List<BookingData>	bik=getbook();
 		List<BookingData> srbd =new ArrayList<BookingData>();
 		int q = 0;
 		for(BookingData bd:bik)
 		{
-			System.out.println(w);
-			System.out.println(bd.getShowadminId());
+			logger.info(w);
+			logger.info(bd.getShowadminId());
 			if(w==bd.getShowadminId()) 
 			{
 				srbd.add(bd);
 				q++;
 			}
 		}
-		System.out.println("Fetched sr "+q);
+		logger.info("Fetched sr "+q);
 		return srbd;
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
 	public static List<BookingData> getcusbooks(int w) {
-		System.out.println("Fetching sr bike");
+		logger.info("Fetching sr bike");
 		List<BookingData>	bik=getbook();
 		List<BookingData> srbd =new ArrayList<BookingData>();
 		int q = 0;
 		for(BookingData bd:bik)
 		{
-			System.out.println(w);
-			System.out.println(bd.getCustomerId());
+			logger.info(w);
+			logger.info(bd.getCustomerId());
 			if(w==bd.getCustomerId()) 
 			{
 				srbd.add(bd);
 				q++;
 			}
 		}
-		System.out.println("Fetched sr "+q);
+		logger.info("Fetched sr "+q);
 		return srbd;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,28 +125,28 @@ public class BookingDao {
 	
 	//it will update particular id
 	public static void update(BookingData bi) {
-		System.out.println("Updating BookingData");
+		logger.info("Updating BookingData");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		BookingData bb=session.load(BookingData.class, bi.getId());
 		bb.setStatus(bi.getStatus());
-		System.out.println(bi.toString());
+		logger.info(bi.toString());
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("Updated");
+		logger.info("Updated");
 
 	}
 
 	//it delete the data
 	public static void delete(int id) {
-		System.out.println("delete bike");
+		logger.info("delete bike");
 		BookingData c=getbookById(id);
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.delete(c);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("deleted subbessfully");		
+		logger.info("deleted subbessfully");		
 	}
 
 }

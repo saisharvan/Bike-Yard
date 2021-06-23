@@ -8,7 +8,8 @@
 <title>View Bikes</title>
 </head>
 <body>
-   <table border="1">
+   <table>
+    <caption>View Bikes</caption>
      <thead>
        <tr>
         <th id="id">Showroom Id</th><th id="id">Showroom Admin Name</th><th id="id">showRoomName</th><th id="id">Email</th><th id="id">showRoomAddress</th>
@@ -26,7 +27,7 @@
 	      <td>${show.showRoomAddress}</td>
 	      <td>${show.showRoomLocation }</td>
 	      
-	      <td><a href="ashowdelete/${show.showRoomId}">Delete<a/></td>
+	      <td><a href="ashowdelete/${show.showRoomId}">Delete</a></td>
 	       </tr>
 	   </c:forEach>
      </tbody>

@@ -8,7 +8,8 @@
 <title>View Bikes</title>
 </head>
 <body>
-   <table border="1">
+   <table>
+    <caption>View Bikes</caption>
      <thead>
        <tr>
         <th id="id">Bike Number</th><th id="id">Bike Name</th><th id="id">Bike Cost</th><th id="id">Bike Color</th><th id="id">Bike Description</th>
@@ -26,7 +27,7 @@
 	      <td>${biked.bikeDescription }</td>
 	      <td>${biked.availability }</td>
 	      <td><a href="editsr/${biked.id}">Edit</a></td>
-	      <td><a href="deletebikesr/${biked.id}">Delete<a/></td>
+	      <td><a href="deletebikesr/${biked.id}">Delete</a></td>
 	       </tr>
 	   </c:forEach>
      </tbody>

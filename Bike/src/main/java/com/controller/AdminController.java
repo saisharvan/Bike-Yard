@@ -3,6 +3,10 @@ package com.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +20,8 @@ import com.entity.*;
 @Controller
 public class AdminController {
 	
-	
+	private static final Logger logger = LogManager.getLogger(AdminController.class);  
+	 
 	
 	@RequestMapping("/")
 	public String a() 
@@ -57,7 +62,8 @@ public class AdminController {
 		//it retrieve the edit form
 		@RequestMapping("/edits/{id}")
 		public String edit(@PathVariable int id,Model mv) {
-			System.out.println(id);
+			BasicConfigurator.configure();  
+			 logger.info(id);
 			Customer cus=AdminDao.getCustById(id);
 			mv.addAttribute("customer", cus);
 			return "admin/editcustomer";	
@@ -66,9 +72,10 @@ public class AdminController {
 		@SuppressWarnings({ })
 		@RequestMapping(value="/edits/updatecustomer")    
 		public String editsave(@ModelAttribute("customer") Customer cus){  
-			System.out.println("updating");
-			CustomerDao.update(cus);    
-			System.out.println(cus);
+			BasicConfigurator.configure();  
+			 logger.info("updating customers");
+			CustomerDao.update(cus); 
+			logger.info(cus);
 			return "redirect:/views";    
 		} 
 		//it will remove the customer data
@@ -90,7 +97,8 @@ public class AdminController {
 	  //it retrive the editform in showt
 		@RequestMapping("/ashowedit/{id}")
 		public String showtedit(@PathVariable int id,Model mv) {
-			System.out.println(id);
+			BasicConfigurator.configure();  
+			 logger.info(id);
 			ShowRoomAdmin show=ShowroomDao.getShowById(id);  
 			mv.addAttribute("ShowRoomAdmin", show);
 			return "ShowRoomAdmin/ashowedit";	
@@ -100,9 +108,10 @@ public class AdminController {
 		// It updates model object at showt
 		@RequestMapping(value="/ashowedit/aupdateshowroom")    
 		public String editsaveing(@ModelAttribute("ShowRoomAdmin") ShowRoomAdmin show){  
-			System.out.println("updating");
-			ShowroomDao.update(show);    
-			System.out.println(show);
+			BasicConfigurator.configure();  
+			 logger.info("updating showroom");
+			ShowroomDao.update(show);   
+			 logger.info(show);
 			return "redirect:/aview";    
 		} 
 		//it will remove the bike data
@@ -150,7 +159,8 @@ public class AdminController {
 			//it retrive the editform
 			@RequestMapping("/bedit/{id}")
 			public String bedit(@PathVariable int id,Model mv) {
-				System.out.println(id);
+				BasicConfigurator.configure();  
+				 logger.info(id);
 				BikesData cus=BikeDao.getbikById(id);  
 				mv.addAttribute("bike", cus);
 				return "admin/bikeedit";	
@@ -159,10 +169,11 @@ public class AdminController {
 			
 		    
 		    @RequestMapping(value="/bedit/updatebike")    
-		    public String editsave(@ModelAttribute("bike") BikesData cus){  
-		    	System.out.println("updating");
-		    	BikeDao.update(cus);    
-		        System.out.println(cus);
+		    public String editsave(@ModelAttribute("bike") BikesData cus){ 
+		    	BasicConfigurator.configure();  
+				 logger.info("updating bikes");
+		    	BikeDao.update(cus);  
+		    	 logger.info(cus);
 		        return "redirect:/view";    
 		    }    
 

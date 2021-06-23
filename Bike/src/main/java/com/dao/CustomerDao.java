@@ -1,6 +1,9 @@
 package com.dao;
 
 import java.util.List;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.controller.CustomerController;
@@ -15,34 +18,35 @@ public class CustomerDao {
 
 	static SessionFactory sessionFactory=null;
 
+	private static final Logger logger = LogManager.getLogger(CustomerDao.class); 
 	//it will save the data in database
 	public static void save(Customer cus) {
-		System.out.println("creating customer");
+		logger.info("creating customer");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(cus);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("customer created successfully "+cus.toString());
+		logger.info("customer created successfully "+cus.toString());
 
 	}
 
 
 	//
 	public static List<Customer> getCustomers() {
-		System.out.println("Fetching Customer");
+		logger.info("Fetching Customer");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		@SuppressWarnings("unchecked")
 		List<Customer>	cust=session.createQuery("from Customer").list();
 		session.close();
-		System.out.println("Fetched "+cust.size());
+		logger.info("Fetched "+cust.size());
 		return cust;
 	}
 	
 
 	public static Customer getCustById(int id) {
 		a=id;
-		System.out.println("Fetching Customer by id");
+		logger.info("Fetching Customer by id");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		Customer cust=session.load(Customer.class, id);
 		session.close();
@@ -57,14 +61,14 @@ public class CustomerDao {
 	}
 	////////////////////////
 	public static Customer getCustBy() {
-		System.out.println("Fetching Customer using particular id");
+		logger.info("Fetching Customer using particular id");
 		List<Customer> custList=getCustomers();
 		Customer c=new Customer();
 		for(Customer cust:custList)
 		{
 			if(a==cust.getId()) 
 			{
-				System.out.println("profile id "+a);
+				logger.info("profile id "+a);
 				c=cust;
 				break;
 			}
@@ -83,7 +87,7 @@ public class CustomerDao {
 			{
 				a=cust.getId(); 
 				CustomerController.cusId=cust.getId();
-				System.out.println("checked id "+a);
+				logger.info("checked id "+a);
 				che=true;
 				break;
 			}
@@ -101,7 +105,7 @@ public class CustomerDao {
 
 	//it will update particular id
 	public static void update(Customer cus) {
-		System.out.println("Updating Customer");
+		logger.info("Updating Customer");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Customer cc=session.load(Customer.class, a);
@@ -116,35 +120,35 @@ public class CustomerDao {
 		{
 			cc.setBookId(cus.getBookId());
 		}else {cc.setBookId(0);}
-		System.out.println(cus.toString());
+		logger.info(cus.toString());
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("Updated");
+		logger.info("Updated");
 
 	}
 
 	//it delete the data
 	public static void delete(int id) {
-		System.out.println("delete customer");
+		logger.info("delete customer");
 		Customer c=getCustById(id);
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.delete(c);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("deleted successfully");		
+		logger.info("deleted successfully");		
 	}
 
 	
 
 	public static int take() {
-		System.out.println("dao"+a);
+		logger.info("dao"+a);
 		return a;
 	}
 	public static void out() 
 	{
-		System.out.print(a);
+		logger.info(a);
 		a=0;
-		System.out.print(" is logged out");
+		logger.info(" is logged out");
 	}
 }
