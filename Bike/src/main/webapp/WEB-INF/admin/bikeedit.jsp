@@ -12,9 +12,9 @@
 	
 	<h1>Edit Bike</h1>
 	<form:form  modelAttribute="bike" action="updatebike" method="post">
-		<table>
+		<table style="width:100%">
 		<tr>   
-         <td><form:hidden path="id" /></td>  
+         <th id="id"><form:hidden path="id" /></th>  
          </tr>   
 			<tr>
 				<td>Bike Name:</td>

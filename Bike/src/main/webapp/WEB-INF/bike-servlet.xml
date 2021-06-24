@@ -15,4 +15,5 @@
    </bean>
   
   
+  <bean id="customerdao" class="com.ecommerce.dao.CustomerDao"></bean>
    </beans>

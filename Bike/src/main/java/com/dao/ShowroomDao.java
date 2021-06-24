@@ -12,8 +12,8 @@ import com.util.HibernateUtil;
 public class ShowroomDao {
 	private ShowroomDao() {}
 	/////////////////
-		public static int a;
-		public static int b;
+		 static int a;
+		 static int b;
 		
 		static SessionFactory sessionFactory=null;
 		//
@@ -70,7 +70,7 @@ public class ShowroomDao {
 		/////////////////////////////////
 		public static String checkIdPassword(String email,String pass) {
 			List<ShowRoomAdmin> showList=getShowRoomAdmins();
-			boolean che = false;
+			int che = 1;
 			for(ShowRoomAdmin show:showList)
 			{
 				String idd=show.getEmail();
@@ -80,10 +80,10 @@ public class ShowroomDao {
 					a=show.getShowRoomId(); 
 					b=a;
 					logger.info("checked id "+a);
-					che=true;
+					che=0;
 				}
 			}
-				if(che==true) {
+				if(che==0) {
 					return"redirect:/srhome";
 				}
 				else

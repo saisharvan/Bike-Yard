@@ -100,7 +100,7 @@ public class ShowroomController {
 	//it is use for ShowRoomAdmin
 	@RequestMapping("/showview")    
 	public String showview(Model m){    
-		List<BikesData> list=BikeDao.getsrBikes(ShowroomDao.b);    
+		List<BikesData> list=BikeDao.getsrBikes(ShowroomDao.take());    
 		m.addAttribute("list",list);  
 		return "ShowRoomAdmin/viewbikessr";    
 	}
@@ -109,7 +109,7 @@ public class ShowroomController {
 	@RequestMapping("/bookings") 
 	public String bookings(Model m) 
 	{
-		List<BookingData> list=BookingDao.getbooks(ShowroomDao.b);
+		List<BookingData> list=BookingDao.getbooks(ShowroomDao.take());
 		m.addAttribute("list",list);
 		return "ShowRoomAdmin/viewbookings";
 	}
